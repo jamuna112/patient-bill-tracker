@@ -6,10 +6,10 @@ export const patients = [
     phoneNumber: "(562) 555-1023",
     address: "1245 Maple Ave, Fullerton, CA 92831",
     hospitalProvider: "Sunrise Valley Medical Center",
-    totalBillAmount: 4200,
+    totalBillAmount: 4300,
     paidAmount: 4200,
-    remainingAmount: 0,
-    status: "Paid",
+    remainingAmount: 100,
+    status: "Pending",
     description: "Emergency room visit and CT scan for severe migraine symptoms."
   },
   {
@@ -20,8 +20,8 @@ export const patients = [
     address: "908 Palm St, Anaheim, CA 92805",
     hospitalProvider: "Sunrise Valley Medical Center",
     totalBillAmount: 15800,
-    paidAmount: 5000,
-    remainingAmount: 10800,
+    paidAmount: 0,
+    remainingAmount: 15800,
     status: "Unpaid",
     description: "Knee replacement surgery with post-operative physical therapy."
   },
@@ -35,7 +35,7 @@ export const patients = [
     totalBillAmount: 2750,
     paidAmount: 1200,
     remainingAmount: 1550,
-    status: "Unpaid",
+    status: "Pending",
     description: "Maternity care consultation and ultrasound services."
   },
   {
@@ -61,7 +61,7 @@ export const patients = [
     totalBillAmount: 7200,
     paidAmount: 3000,
     remainingAmount: 4200,
-    status: "Unpaid",
+    status: "Pending",
     description: "Outpatient surgery for gallbladder removal."
   },
   {
@@ -72,9 +72,9 @@ export const patients = [
     address: "734 Hillcrest Rd, Burbank, CA 91505",
     hospitalProvider: "Sunrise Valley Medical Center",
     totalBillAmount: 1850,
-    paidAmount: 1850,
-    remainingAmount: 0,
-    status: "Paid",
+    paidAmount: 0,
+    remainingAmount: 1850,
+    status: "Unpaid",
     description: "X-ray imaging and fracture treatment for wrist injury."
   },
   {
@@ -85,8 +85,8 @@ export const patients = [
     address: "1412 Cedar Ln, Orange, CA 92867",
     hospitalProvider: "Sunrise Valley Medical Center",
     totalBillAmount: 3400,
-    paidAmount: 1000,
-    remainingAmount: 2400,
+    paidAmount: 0,
+    remainingAmount: 3400,
     status: "Unpaid",
     description: "Pediatric asthma treatment and overnight observation."
   },
@@ -113,7 +113,7 @@ export const patients = [
     totalBillAmount: 8900,
     paidAmount: 2500,
     remainingAmount: 6400,
-    status: "Unpaid",
+    status: "Pending",
     description: "Appendix removal surgery and inpatient recovery stay."
   },
   {
@@ -139,7 +139,7 @@ export const patients = [
     totalBillAmount: 6100,
     paidAmount: 2000,
     remainingAmount: 4100,
-    status: "Unpaid",
+    status: "Pending",
     description: "Physical therapy sessions following shoulder injury."
   },
   {
@@ -165,7 +165,7 @@ export const patients = [
     totalBillAmount: 9800,
     paidAmount: 4800,
     remainingAmount: 5000,
-    status: "Unpaid",
+    status: "Pending",
     description: "Labor and delivery hospital stay with newborn care."
   },
   {
@@ -176,9 +176,9 @@ export const patients = [
     address: "600 Valley View Ln, Bakersfield, CA 93301",
     hospitalProvider: "Sunrise Valley Medical Center",
     totalBillAmount: 1750,
-    paidAmount: 1750,
-    remainingAmount: 0,
-    status: "Paid",
+    paidAmount: 0,
+    remainingAmount: 1750,
+    status: "Unpaid",
     description: "Eye examination and minor outpatient laser procedure."
   },
   {
@@ -191,7 +191,7 @@ export const patients = [
     totalBillAmount: 4600,
     paidAmount: 1500,
     remainingAmount: 3100,
-    status: "Unpaid",
+    status: "Pending",
     description: "Diabetes management consultation and lab testing."
   }
 ]
