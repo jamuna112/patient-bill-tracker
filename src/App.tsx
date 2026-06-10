@@ -1,7 +1,9 @@
-import BillCard, { formatter } from "./components/BillCard"
 import { patients } from "./app/mocks/patients"
 import { useState } from "react"
 import { Search } from "lucide-react"
+import PatientModal from "./components/PatientModal"
+import { formatter } from "./app/utils/patientUtils"
+import BillCard from "./components/BillCard"
 
 
 const todaysDate = new Date().toLocaleDateString("en-US", {
@@ -32,6 +34,7 @@ const patientsWithStatus = patients.map((patient) => ({
 function App() {
   const [activeFilter, setActiveFilter] = useState("All")
   const [searchTerm, setSearchTerm] = useState("")
+  const [selectedPatient, setSelectedPatient] = useState(null)
 
   const filteredPatients = patientsWithStatus.filter((patient) => {
     if (activeFilter === "All" && (patient.fullName.toLowerCase().includes(searchTerm.toLowerCase()))) {
@@ -101,12 +104,22 @@ function App() {
             <p className="text-center text-gray-500 col-span-full">No patients found.</p>
           ) : (
             filteredPatients.map((patient) => (
-              <BillCard key={patient.id} bill={patient} />
+              <BillCard
+                key={patient.id}
+                bill={patient}
+                onClick={() => setSelectedPatient(patient)} />
             ))
           )
         }
-
       </div>
+      {
+        selectedPatient && (
+          <PatientModal
+            bill={selectedPatient}
+            onClose={() => setSelectedPatient(null)}
+          />
+        )
+      }
     </div>
   )
 }

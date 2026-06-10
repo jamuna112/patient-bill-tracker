@@ -1,47 +1,20 @@
-interface BillCardProps {
-  bill: {
-    fullName: string
-    hospitalProvider: string
-    description: string
-    totalBillAmount: number
-    paidAmount: number
-    remainingAmount: number
-    status: string
-  }
-}
+import type { BillCardProps } from "../app/type";
+import { formatter, paidColorClass, paidPercentage, statusColors } from "../app/utils/patientUtils";
 
+function BillCard({ bill, onClick }: BillCardProps) {
 
+  const progressPercentage = paidPercentage(bill);
 
-export const formatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
-
-function BillCard({ bill }: BillCardProps) {
-  const statusColors = {
-    Paid: "bg-green-100 text-green-800",
-    Unpaid: "bg-red-100 text-red-800",
-    Pending: "bg-yellow-100 text-yellow-800",
-  };
-
-  const paidColorClass = bill.paidAmount > 0 ? statusColors.Paid : "bg-gray-900 text-gray-400";
-
-  const paidPercentage =
-    bill.totalBillAmount > 0
-      ? Math.min(
-        100,
-        (bill.paidAmount / bill.totalBillAmount) * 100
-      )
-      : 0;
   const progressBar =
-    paidPercentage === 100
+    progressPercentage === 100
       ? "bg-green-500"
-      : paidPercentage >= 50
+      : progressPercentage >= 50
         ? "bg-yellow-500"
         : "bg-orange-500";
 
   return (
-    <div className=" p-4 rounded-lg shadow-md bg-gray-800">
+    <div className=" p-4 rounded-lg shadow-md bg-gray-800"
+      onClick={onClick}>
 
       <div className="space-y-2 mt-4">
         <div className="flex justify-between">
@@ -61,13 +34,13 @@ function BillCard({ bill }: BillCardProps) {
       <div className="mt-2">
         <div className="flex justify-between text-xs text-gray-400">
           <span>Payment Progress</span>
-          <span>{paidPercentage.toFixed(0)}%</span>
+          <span>{progressPercentage.toFixed(0)}%</span>
         </div>
 
         <div className="w-full h-1 bg-gray-700 rounded-full overflow-hidden">
           <div
             className={`h-full ${progressBar} transition-all duration-700 ease-out`}
-            style={{ width: `${paidPercentage}%` }}>
+            style={{ width: `${progressPercentage}%` }}>
 
           </div>
         </div>
@@ -79,7 +52,7 @@ function BillCard({ bill }: BillCardProps) {
           <p>{formatter.format(bill.totalBillAmount)}</p>
         </div>
 
-        <div className={`${paidColorClass} text-xs rounded px-2 py-1`}>
+        <div className={`${paidColorClass(bill)} text-xs rounded px-2 py-1`}>
           <p className="text-xs">Paid</p>
           <p>{formatter.format(bill.paidAmount)}</p>
         </div>
