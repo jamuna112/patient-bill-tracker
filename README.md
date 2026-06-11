@@ -24,7 +24,7 @@ The Patient Bill Tracker is an application designed to help healthcare organizat
 
 ## Run Locally
 
-git clone https://github.com/jamuna112/patient-bill-tracker.git
-cd patient-billing-tracker
-npm install
-npm run dev
+- git clone https://github.com/jamuna112/patient-bill-tracker.git
+- cd patient-billing-tracker
+- npm install
+- npm run dev
