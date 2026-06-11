@@ -4,6 +4,7 @@ import { Search } from "lucide-react"
 import PatientModal from "./components/PatientModal"
 import { formatter } from "./app/utils/patientUtils"
 import BillCard from "./components/BillCard"
+import type { BillCardProps } from "./app/type"
 
 
 const todaysDate = new Date().toLocaleDateString("en-US", {
@@ -34,7 +35,7 @@ const patientsWithStatus = patients.map((patient) => ({
 function App() {
   const [activeFilter, setActiveFilter] = useState("All")
   const [searchTerm, setSearchTerm] = useState("")
-  const [selectedPatient, setSelectedPatient] = useState(null)
+  const [selectedPatient, setSelectedPatient] = useState<BillCardProps["bill"] | null>(null)
 
   const filteredPatients = patientsWithStatus.filter((patient) => {
     if (activeFilter === "All" && (patient.fullName.toLowerCase().includes(searchTerm.toLowerCase()))) {

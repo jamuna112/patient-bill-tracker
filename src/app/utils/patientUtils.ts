@@ -9,10 +9,13 @@ export const statusColors = {
   Pending: "bg-yellow-100 text-yellow-800",
 };
 
-export const paidColorClass = (bill) =>
+export const paidColorClass = (bill: { paidAmount: number }): string =>
   bill.paidAmount > 0 ? statusColors.Paid : "bg-gray-900 text-gray-400";
 
-export const paidPercentage = (bill) =>
+export const paidPercentage = (bill: {
+  totalBillAmount: number;
+  paidAmount: number;
+}): number =>
   bill.totalBillAmount > 0
     ? Math.min(100, (bill.paidAmount / bill.totalBillAmount) * 100)
     : 0;
