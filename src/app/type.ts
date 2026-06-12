@@ -9,11 +9,12 @@ export interface BillCardProps {
     remainingAmount: number;
     dueDate: string;
     insuranceProvider: string;
-    status: string;
+    status: BillStatus;
   };
   onClick?: () => void;
 }
 
+export type BillStatus = "Paid" | "Unpaid" | "Pending";
 export interface PatientModalProps extends BillCardProps {
   onClose: () => void;
 }

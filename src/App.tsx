@@ -1,10 +1,10 @@
-import { patients } from "./app/mocks/patients"
+import patients, { type Patient } from "./app/mocks/patients"
 import { useState } from "react"
 import { Search } from "lucide-react"
 import PatientModal from "./components/PatientModal"
 import { formatter } from "./app/utils/patientUtils"
 import BillCard from "./components/BillCard"
-import type { BillCardProps } from "./app/type"
+import type { BillCardProps, BillStatus } from "./app/type"
 
 
 const todaysDate = new Date().toLocaleDateString("en-US", {
@@ -13,22 +13,16 @@ const todaysDate = new Date().toLocaleDateString("en-US", {
   day: "numeric",
 })
 
-const paymentStatus = (totalAmount: number, paidAmount: number): string => {
-  if (paidAmount === 0) {
-    return "Unpaid"
-  }
-  if (paidAmount === totalAmount) {
-    return "Paid"
-  }
-  else {
-    return "Pending"
-  }
-}
+const getStatus = (patient: Patient): BillStatus => {
+  if (patient.remainingAmount === 0) return "Paid";
+  if (patient.paidAmount === 0) return "Unpaid";
+  return "Pending";
+};
 
 const patientsWithStatus = patients.map((patient) => ({
   ...patient,
-  status: paymentStatus(patient.totalBillAmount, patient.paidAmount)
-}))
+  status: getStatus(patient),
+}));
 
 
 
@@ -51,7 +45,7 @@ function App() {
 
   return (
 
-    <div className="px-6 py-4 bg-gray-950">
+    <div className="min-h-screen w-full px-6 py-4 bg-gray-950">
 
       <div className="mb-6">
         <h1 className="text-center font-extrabold text-3xl text-gray-100">Patient Billing Tracker</h1>
